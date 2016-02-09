@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
+    'django_twilio',
+    'produce',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -106,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -119,3 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Twilio variables, here for now
+TWILIO_ACCOUNT_SID = 'AC50a3852af220b37d81d683e1ba399ebe'
+TWILIO_AUTH_TOKEN = '28dcb0784efe07ee2d006c3e8d850a16'
