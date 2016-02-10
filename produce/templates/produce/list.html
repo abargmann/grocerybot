@@ -1,0 +1,17 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<h1>Produce in Season</h1>
+{% if produce_list %}
+    <ul>
+    {% for produce in produce_list %}
+		<li>{{ produce.name }} in {{ produce.state }}</li>
+	{% endfor %}
+    </ul>
+{% else %}
+    <p>No produce are available.</p>
+{% endif %}

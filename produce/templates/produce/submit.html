@@ -2,13 +2,40 @@
 {% load bootstrap3 %}
 
 {# Load CSS and JavaScript #}
+{% bootstrap_javascript jquery=1 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<form method="POST">
-	{% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-	<button type="submit" class="btn btn-primary">Submit</button>
-	{% endbuttons %}
-</form>
+<body>
+   <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+			<form method="POST">
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% buttons %}
+				<button type="submit" class="btn btn-primary">Submit</button>
+				{% endbuttons %}
+			</form>
+		</div>
+	</div>
+</body>
+
+{% block page_css %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
+{% endblock %}
+
+{% block page_js %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script type="text/javascript">
+      $(function() {
+          $('#id_season_start').datetimepicker({
+            format: 'MM/DD/YYYY HH:mm',
+            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            sideBySide: true
+          });
+      });
+  </script>
+{% endblock %}

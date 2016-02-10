@@ -1,0 +1,26 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="row">
+	<div class="col-lg-9">
+		<div class="page-header">
+			<h1>Produce</h1>
+		</div>
+
+		<dl class="dl-horizontal">
+			<dt><strong>Name:</strong></dt>
+			<dd>{{ produce.name }}</dd>
+			<dt><strong>Locations:</strong></dt>
+			<dd>{{ produce.state }}</dd>
+			<dt><strong>Season Start:</strong></dt>
+			<dd>{{ produce.season_start }}</dd>
+			<dt><strong>Season End:</strong></dt>
+			<dd>{{ produce.season_end }}</dd>
+		</dl>
+
+	</div>
+</div>

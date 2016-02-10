@@ -65,10 +65,18 @@ class Produce(models.Model):
 		('Protein', 'Protein'),
 		('Other', 'Other'),
     )
+
 	name = models.CharField(max_length=200)
-	food_type = models.CharField(max_length = 300, choices=FOOD_TYPE)
+	food_type = models.CharField(max_length=200, choices=FOOD_TYPE)
 	season_start = models.DateField(blank=True, null=True)
 	season_end = models.DateField(blank=True, null=True)
-	state = models.CharField(max_length = 300, choices=STATES, default='New York')
+	state = models.CharField(max_length=500, choices=STATES, default='New York')
+
+	# Additional fields not set by users:
+	# created = models.DateTimeField(auto_now_add=True, defau)
+
 	def __str__(self):
-		return self.name
+		return 'Produce #{0} - {1} in {2}'.format(self.pk, self.name, self.state)
+
+	def get_absolute_url(self):
+		return reverse('produce_detail', args=[str(self.id)])
