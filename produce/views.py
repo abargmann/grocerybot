@@ -33,6 +33,7 @@ class ProduceUpdateView(generic.UpdateView):
 	template_name = 'produce/submit.html'
 	fields = ['name', 'state', 'food_type', 'season_start', 'season_end']
 	# This should be updated to be a message, using djangos message thing
+	# Also probably shouldn't use reverse_lazy here - got to be better way
 	success_url = reverse_lazy('list')
 
 class ProduceDeleteView(generic.DeleteView):
