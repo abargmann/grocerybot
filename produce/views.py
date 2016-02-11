@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-import datetime
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView, DetailView, UpdateView
 from django_twilio.decorators import twilio_view
 from twilio.twiml import Response
+import datetime
 
 from .forms import ProduceSubmitForm
 from .models import Produce
+from produce.messages import *
 
 class SeasonalView(generic.ListView):
 	"""Returns a list of the produce that is in season for the current day."""
@@ -39,11 +40,12 @@ class ProduceDeleteView(generic.DeleteView):
 	model = Produce
 	success_url = reverse_lazy('list')
 
-
 @twilio_view
 def sms(request):
 	"""Receive incoming SMS messages.  Return a generic response."""
 	message_body = request.POST.get('Body', '')
+	incoming_number = request.POST.get('From', '')
+	send_sms_seasonal_produce(message_body, incoming_number)
 	r = Response()
 	return r
 
