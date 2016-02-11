@@ -45,7 +45,13 @@ def sms(request):
 	"""Receive incoming SMS messages.  Return a generic response."""
 	message_body = request.POST.get('Body', '')
 	incoming_number = request.POST.get('From', '')
-	send_sms_seasonal_produce(message_body, incoming_number)
+	# This cannot be the right way to do this, but checking if the
+	# user sent a produce or a location, and then responding accordingly
+	query_set = Produce.objects.all()
+	if query_set.filter(name__icontains=message_body):
+		send_sms_produce_detail(message_body, incoming_number)
+	else:
+		send_sms_seasonal_produce(message_body, incoming_number)
 	r = Response()
 	return r
 
