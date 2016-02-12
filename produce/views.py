@@ -41,6 +41,8 @@ class ProduceDeleteView(generic.DeleteView):
 	model = Produce
 	success_url = reverse_lazy('list')
 
+# this view handles incoming requests.  the decorator
+# is from the django-twilio library
 @twilio_view
 def sms(request):
 	"""Receive incoming SMS messages.  Return a generic response."""
