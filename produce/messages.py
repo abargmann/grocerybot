@@ -3,6 +3,7 @@ from django.conf import settings
 from twilio.rest import TwilioRestClient
 
 from .models import Produce
+from produce.messages import *
 
 client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 
@@ -40,3 +41,10 @@ def send_sms_produce_detail(produce_name, phone_number):
 			from_=settings.TWILIO_NUMBER,
 		)
 
+def send_local_markets(zipcode, phone_number):
+	markets = get_markets_by_zip(zipcode)
+	message = client.messages.create(
+		body = markets,
+		to = phone_number,
+		from_=settings.TWILIO_NUMBER,
+	)
