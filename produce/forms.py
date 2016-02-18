@@ -1,6 +1,6 @@
 from django	import forms
 
-from .models import	Produce
+from produce.models import	Produce
 
 class ProduceSubmitForm(forms.ModelForm):
 	class Meta:

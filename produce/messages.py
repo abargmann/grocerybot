@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from django.conf import settings
 from twilio.rest import TwilioRestClient
 
-from .models import Produce
+from produce.models import Produce
 from produce.messages import *
 
 client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
